@@ -1,0 +1,9 @@
+<launch>
+
+	<!-- Start odom publisher node   -->
+	<node name="odometry_publisher" pkg="rviz_sandbox" type="odometry_publisher" />
+
+	<!-- Show in Rviz   -->
+	<node name="rviz" pkg="rviz" type="rviz" args="-d $(find rviz_sandbox)/launch/odom_publisher.rviz" />
+
+</launch>
