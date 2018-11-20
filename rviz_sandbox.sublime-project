@@ -1,0 +1,25 @@
+{
+	"folders":
+	[
+		{
+			"path": ".",
+			"folder_exculde_patterns": ["include"],
+			"folder_inculde_patterns": ["*.cpp"]
+		}
+	],
+	"settings":
+	{
+		"ecc_flags_sources":
+		[
+			{
+				"file": "CMakeLists.txt",
+				"prefix_paths":
+				[
+					"/opt/ros/indigo",
+					"~/catkin_ws/devel",
+					"/opt/ros/melodic"
+				]
+			}
+		]
+	}
+}
