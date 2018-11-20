@@ -1,9 +1,15 @@
 <launch>
 
+	<arg name="model" default="$(find rviz_sandbox)/urdf/car_model.xacro"/>
+	<arg name="rvizconfig" default="$(find rviz_sandbox)/launch/odom_publisher_with_car.rviz" />
+
+	<!-- load urdf-car-model -->
+	<param name="car_model" command="$(find xacro)/xacro $(arg model)" />
+
 	<!-- Start odom publisher node   -->
 	<node name="odometry_publisher" pkg="rviz_sandbox" type="odometry_publisher" />
 
 	<!-- Show in Rviz   -->
-	<node name="rviz" pkg="rviz" type="rviz" args="-d $(find rviz_sandbox)/launch/odom_publisher.rviz" />
+	<node name="rviz" pkg="rviz" type="rviz" args="-d $(arg rvizconfig)" required="true" />
 
 </launch>
