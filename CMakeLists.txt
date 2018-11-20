@@ -205,5 +205,8 @@ include_directories(
 add_executable(rviz_publisher src/rviz_publisher.cpp)
 target_link_libraries(rviz_publisher ${catkin_LIBRARIES})
 
-add_executable(odometry_publisher src/publish_odom_msg.cpp)
+add_executable(odometry_publisher src/odometry_publisher.cpp)
 target_link_libraries(odometry_publisher ${catkin_LIBRARIES})
+
+add_executable(cone_publisher src/cone_publisher.cpp)
+target_link_libraries(cone_publisher ${catkin_LIBRARIES})
