@@ -3,8 +3,7 @@
 	[
 		{
 			"path": ".",
-			"folder_exculde_patterns": ["include"],
-			"folder_inculde_patterns": ["*.cpp"]
+			"folder_exclude_patterns": ["include"]
 		}
 	],
 	"settings":
