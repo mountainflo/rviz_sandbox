@@ -11,6 +11,8 @@ find_package(catkin REQUIRED COMPONENTS
   roscpp
   std_msgs
   geometry_msgs
+  nav_msgs
+  tf
 )
 
 ## System dependencies are found with CMake's conventions
@@ -201,3 +203,6 @@ include_directories(
 
 add_executable(rviz_publisher src/rviz_publisher.cpp)
 target_link_libraries(rviz_publisher ${catkin_LIBRARIES})
+
+add_executable(odometry_publisher src/publish_odom_msg.cpp)
+target_link_libraries(odometry_publisher ${catkin_LIBRARIES})
