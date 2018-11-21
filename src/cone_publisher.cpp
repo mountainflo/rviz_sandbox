@@ -36,6 +36,8 @@ int main(int argc, char** argv){
     ros::spinOnce(); // check for incoming messages
     current_time = ros::Time::now();
 
+
+    //------------------------------------------------------------
     //compute odometry in a typical way given the velocities of the robot
     double dt = (current_time - last_time).toSec();
     double delta_x = (vx * cos(th) - vy * sin(th)) * dt;
@@ -46,6 +48,8 @@ int main(int argc, char** argv){
     y += delta_y;
     th += delta_th;
 
+
+    //------------------------------------------------------------
     //next, we'll publish the odometry message over ROS
     visualization_msgs::Marker marker;
     marker.header.frame_id = "odom";
@@ -71,6 +75,9 @@ int main(int argc, char** argv){
     //publish the message
     cone_pub.publish(marker);
 
+
+
+    //------------------------------------------------------------
     last_time = current_time;
     ++count;
     r.sleep();
