@@ -1,13 +1,29 @@
 # rviz_sandbox
 
-Sandbox for rviz with the following contents:
+### Description
 
-### Odometry Publisher
+Sandbox for rviz where publisher, urdf and tf-functions will be tested.
 
 
-Start the odometry publisher from launch-file with the following command.
+### Prerequisites
+
+* installed ROS
+* copy this package into your catkin_workspace
+
+
+### Getting this thing running
+
+Build and start the simulation:
 
 ```
+cd ~/catkin_ws
+catkin_make
 roslaunch rviz_sandbox odom_publisher.launch
 
 ```
+
+The "odom_publisher.launch"-file does:
+
+* start rviz with urdf model
+* start odometry_publisher
+* start cone_publisher
