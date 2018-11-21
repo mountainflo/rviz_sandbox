@@ -19,7 +19,6 @@ Build and start the simulation:
 cd ~/catkin_ws
 catkin_make
 roslaunch rviz_sandbox odom_publisher.launch
-
 ```
 
 The "odom_publisher.launch"-file does:
