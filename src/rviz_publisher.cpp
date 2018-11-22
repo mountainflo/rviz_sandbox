@@ -1,8 +1,7 @@
 #include "ros/ros.h"
-#include <geometry_msgs/Point.h>
-//#include <visualization_msgs/Marker.h>
-
-
+//#include <geometry_msgs/PointStamped.h>
+//#include <geometry_msgs/Point.h>
+#include <visualization_msgs/Marker.h>
 #include <sstream>
 
 /**
@@ -15,26 +14,40 @@ int main(int argc, char **argv)
 
   ros::NodeHandle n;
 
-  ros::Publisher rviz_pub = n.advertise<geometry_msgs::Point>("geo_publisher", 1000); //topic name
+  ros::Publisher rviz_pub = n.advertise<visualization_msgs::Marker>("marker_publisher", 100); //topic name
 
   ros::Rate loop_rate(1); // run with 10 Hz
 
 
-  ROS_INFO("rviz_publisher started.");
+  ROS_INFO("marker_publisher started.");
 
   int count = 0;
   while (ros::ok())
   {
 
-    geometry_msgs::Point msg;
-    msg.x = count;
-    msg.y = 1;
-    msg.z = 0;
+    visualization_msgs::Marker marker;
+    marker.header.frame_id = "odom";
+    marker.header.stamp = ros::Time(); // 0 -> always displayed marker
+    marker.id = count;
 
-    //    ROS_INFO("Sum: %ld", (long int)srv.response.sum);
+    marker.type = visualization_msgs::Marker::SPHERE;
+    marker.action = visualization_msgs::Marker::ADD;
 
-    ROS_INFO("published messages: x:%f, y:%f, z:%f", msg.x, msg.y, msg.z);
-    rviz_pub.publish(msg);
+    marker.pose.position.x = count; //move x position over time
+    marker.pose.position.y = 1;
+    marker.pose.position.z = 1;
+
+    marker.scale.x = 0.5;
+    marker.scale.y = 0.5;
+    marker.scale.z = 0.5;
+
+    marker.color.r = 0.0;
+    marker.color.g = 1.0;
+    marker.color.b = 0.0;
+    marker.color.a = 1.0;
+
+    ROS_INFO("published messages: x:%f, y:%f, z:%f", marker.pose.position.x, marker.pose.position.y, marker.pose.position.z);
+    rviz_pub.publish(marker);
 
     ros::spinOnce();
 

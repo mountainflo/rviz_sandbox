@@ -1,3 +1,5 @@
+// used example from http://wiki.ros.org/navigation/Tutorials/RobotSetup/Odom
+
 #include <ros/ros.h>
 #include <tf/transform_broadcaster.h>
 #include <nav_msgs/Odometry.h>
@@ -13,20 +15,21 @@ int main(int argc, char** argv){
   double y = 0.0;
   double th = 0.0;
 
-  double vx = 0.1;
-  double vy = -0.1;
-  double vth = 0.1;
+  double vx = 0.3;
+  double vy = -0.3;
+  double vth = 0.05;
 
   ros::Time current_time, last_time;
   current_time = ros::Time::now();
   last_time = ros::Time::now();
 
-  ros::Rate r(1.0);
+  ros::Rate r(10.0);
   while(n.ok()){
 
     ros::spinOnce();               // check for incoming messages
     current_time = ros::Time::now();
 
+    //------------------------------------------------------------
     //compute odometry in a typical way given the velocities of the robot
     double dt = (current_time - last_time).toSec();
     double delta_x = (vx * cos(th) - vy * sin(th)) * dt;
@@ -37,7 +40,11 @@ int main(int argc, char** argv){
     y += delta_y;
     th += delta_th;
 
-    //since all odometry is 6DOF we'll need a quaternion created from yaw
+
+    //------------------------------------------------------------
+    //since all odometry is 6DOF (6 degrees of freedom)
+    //we'll need a quaternion created from yaw
+    //yaw = turning on z-axis
     geometry_msgs::Quaternion odom_quat = tf::createQuaternionMsgFromYaw(th);
 
     //first, we'll publish the transform over tf
@@ -54,7 +61,9 @@ int main(int argc, char** argv){
     //send the transform
     odom_broadcaster.sendTransform(odom_trans);
 
+    //------------------------------------------------------------
     //next, we'll publish the odometry message over ROS
+    //which will be displayed as arrow
     nav_msgs::Odometry odom;
     odom.header.stamp = current_time;
     odom.header.frame_id = "odom";
@@ -74,6 +83,8 @@ int main(int argc, char** argv){
     //publish the message
     odom_pub.publish(odom);
 
+
+    //------------------------------------------------------------
     last_time = current_time;
     r.sleep();
   }
