@@ -13,10 +13,10 @@ int main(int argc, char** argv){
   ros::Publisher cone_pub = n.advertise<visualization_msgs::Marker>("cone_publisher", 50);
   tf::TransformListener listener;
 
-  double x_left_cone = 5.0;
-  double y_left_cone = -5.0;
-  double x_right_cone = 2.0;
-  double y_rigth_cone = 2.0;
+  double x_left_cone = 3.0;
+  double y_left_cone = -4.0;
+  double x_right_cone = 5.0;
+  double y_right_cone = 0.0;
 
   ros::Time current_time;
   current_time = ros::Time::now();
@@ -33,57 +33,61 @@ int main(int argc, char** argv){
 
     ros::spinOnce(); // check for incoming messages
 
-    /*tf::StampedTransform transform;
-    try{
+    current_time = ros::Time::now();
 
-      //listener.waitForTransform("/base_link", "/odom", ros::Time(0), ros::Duration(10.0) );
-
-      listener.lookupTransform("base_link", "base_link",  
-                                ros::Time(0), transform);
-    }
-    catch (tf::TransformException ex){
-      ROS_ERROR("%s",ex.what());
-      ros::Duration(1.0).sleep();
-    }*/
 
     //------------------------------------------------------------
     //publish left cone
+
+    visualization_msgs::Marker marker_left_cone;
+    marker_left_cone.header.frame_id = "base_link";
+    marker_left_cone.header.stamp = current_time;
+    marker_left_cone.id = count;
+
+    marker_left_cone.type = visualization_msgs::Marker::SPHERE;
+    marker_left_cone.action = visualization_msgs::Marker::ADD;
+
+    marker_left_cone.pose.position.x = x_left_cone; 
+    marker_left_cone.pose.position.y = y_left_cone;
+    marker_left_cone.pose.position.z = 0.0;
+
+    marker_left_cone.scale.x = 0.5;
+    marker_left_cone.scale.y = 0.5;
+    marker_left_cone.scale.z = 0.5;
+
+    marker_left_cone.color.r = 0.0;
+    marker_left_cone.color.g = 0.0;
+    marker_left_cone.color.b = 1.0;
+    marker_left_cone.color.a = 1.0;
+
+    cone_pub.publish(marker_left_cone);
+
+
+    //------------------------------------------------------------
+    //publish right cone
     
-    current_time = ros::Time::now();
+    visualization_msgs::Marker marker_right_cone;
+    marker_right_cone.header.frame_id = "base_link";
+    marker_right_cone.header.stamp = current_time;
+    marker_right_cone.id = ++count;
 
-    visualization_msgs::Marker marker;
-    marker.header.frame_id = "base_link";
-    marker.header.stamp = current_time;
-    marker.id = count;
+    marker_right_cone.type = visualization_msgs::Marker::SPHERE;
+    marker_right_cone.action = visualization_msgs::Marker::ADD;
 
-    marker.type = visualization_msgs::Marker::SPHERE;
-    marker.action = visualization_msgs::Marker::ADD;
+    marker_right_cone.pose.position.x = x_right_cone; 
+    marker_right_cone.pose.position.y = y_right_cone;
+    marker_right_cone.pose.position.z = 0.0;
 
-    //ROS_INFO("transform.getOrigin().x() = %f", transform.getOrigin().x());
-    //ROS_INFO("transform.getOrigin().y() = %f", transform.getOrigin().y());
+    marker_right_cone.scale.x = 0.5;
+    marker_right_cone.scale.y = 0.5;
+    marker_right_cone.scale.z = 0.5;
 
-
-
-    marker.pose.position.x = x_left_cone; 
-    marker.pose.position.y = y_left_cone;
-    marker.pose.position.z = 0.0;
-
-    /*marker.pose.orientation.x = transform.getRotation().x();
-    marker.pose.orientation.y = transform.getRotation().y();
-    marker.pose.orientation.z = transform.getRotation().z();
-    marker.pose.orientation.w = 1.0;*/
-
-    marker.scale.x = 0.5;
-    marker.scale.y = 0.5;
-    marker.scale.z = 0.5;
-
-    marker.color.r = 0.0;
-    marker.color.g = 1.0;
-    marker.color.b = 0.0;
-    marker.color.a = 1.0;
-
-    //publish the message
-    cone_pub.publish(marker);
+    marker_right_cone.color.r = 1.0;
+    marker_right_cone.color.g = 1.0;
+    marker_right_cone.color.b = 0.0;
+    marker_right_cone.color.a = 1.0;
+    
+    cone_pub.publish(marker_right_cone);
 
 
 
