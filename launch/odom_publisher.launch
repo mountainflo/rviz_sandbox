@@ -7,10 +7,10 @@
 	<param name="car_model" command="$(find xacro)/xacro $(arg model)" />
 
 	<!-- Start odom publisher node   -->
-	<node name="odometry_publisher" pkg="rviz_sandbox" type="odometry_publisher" />
+	<node name="odometry_publisher" pkg="rviz_sandbox" type="odometry_publisher" output="screen" />
 
 	<!-- Start cone publisher node   -->
-	<node name="cone_publisher" pkg="rviz_sandbox" type="cone_publisher" />
+	<node name="cone_publisher" pkg="rviz_sandbox" type="cone_publisher" output="screen" />
 
 	<!-- Show in Rviz   -->
 	<node name="rviz" pkg="rviz" type="rviz" args="-d $(arg rvizconfig)" required="true" />
