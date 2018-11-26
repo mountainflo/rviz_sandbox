@@ -9,6 +9,7 @@ Panels:
         - /Grid1
         - /Odometry1
         - /RobotModel1
+        - /Marker1
       Splitter Ratio: 0.5
     Tree Height: 448
   - Class: rviz/Selection
@@ -84,7 +85,7 @@ Visualization Manager:
         Shaft Length: 1
         Shaft Radius: 0.05000000074505806
         Value: Arrow
-      Topic: /odom
+      Topic: /odometry_publisher
       Unreliable: false
       Value: true
     - Alpha: 1
@@ -113,14 +114,14 @@ Visualization Manager:
       Marker Topic: /cone_publisher
       Name: Marker
       Namespaces:
-        "": true
+        {}
       Queue Size: 100
       Value: true
   Enabled: true
   Global Options:
     Background Color: 48; 48; 48
     Default Light: true
-    Fixed Frame: odom
+    Fixed Frame: world
     Frame Rate: 30
   Name: root
   Tools:
@@ -141,7 +142,7 @@ Visualization Manager:
   Views:
     Current:
       Class: rviz/Orbit
-      Distance: 44.67660140991211
+      Distance: 38.191280364990234
       Enable Stereo Rendering:
         Stereo Eye Separation: 0.05999999865889549
         Stereo Focal Distance: 1
