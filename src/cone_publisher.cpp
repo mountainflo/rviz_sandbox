@@ -1,85 +1,95 @@
 #include <ros/ros.h>
-#include <tf/transform_broadcaster.h>
 #include <visualization_msgs/Marker.h>
+#include <std_msgs/ColorRGBA.h>
+
 
 int main(int argc, char** argv){
   ros::init(argc, argv, "cone_publisher");
 
   ros::NodeHandle n;
   ros::Publisher cone_pub = n.advertise<visualization_msgs::Marker>("cone_publisher", 50);
-  tf::TransformBroadcaster odom_broadcaster;
 
+  double x_left_cone = 3.0;
+  double y_left_cone = -4.0;
+  double x_right_cone = 5.0;
+  double y_right_cone = 0.0;
 
-  double x = -1.0;
-  double y = 0.0;
-  double th = 0.0;
-
-  double vx = 5.75;
-  double vy = -5.75;
-  double vth = 1;
-
-  ros::Time current_time, last_time;
+  ros::Time current_time;
   current_time = ros::Time::now();
-  last_time = ros::Time::now();
 
-  int max_amount_cones = 50;
+  int max_amount_cones = 20;
 
-  ros::Rate r(10.0);
+  ros::Rate rate(1.0);
   int count = 0;
-  while(n.ok()){
+  while (n.ok()){
 
-    
     if (count > max_amount_cones) {
       count = 0;
     }
 
     ros::spinOnce(); // check for incoming messages
+
     current_time = ros::Time::now();
 
 
     //------------------------------------------------------------
-    //compute odometry in a typical way given the velocities of the robot
-    double dt = (current_time - last_time).toSec();
-    double delta_x = (vx * cos(th) - vy * sin(th)) * dt;
-    double delta_y = (vx * sin(th) + vy * cos(th)) * dt;
-    double delta_th = vth * dt;
+    //publish left cone
 
-    x += delta_x;
-    y += delta_y;
-    th += delta_th;
+    visualization_msgs::Marker marker_left_cone;
+    marker_left_cone.header.frame_id = "base_link";
+    marker_left_cone.header.stamp = current_time;
+    marker_left_cone.id = count;
 
+    marker_left_cone.type = visualization_msgs::Marker::SPHERE;
+    marker_left_cone.action = visualization_msgs::Marker::ADD;
 
-    //------------------------------------------------------------
-    //next, we'll publish the odometry message over ROS
-    visualization_msgs::Marker marker;
-    marker.header.frame_id = "odom";
-    marker.header.stamp = current_time; // 0 -> always displayed marker
-    marker.id = count;
+    marker_left_cone.pose.position.x = x_left_cone; 
+    marker_left_cone.pose.position.y = y_left_cone;
+    marker_left_cone.pose.position.z = 0.0;
 
-    marker.type = visualization_msgs::Marker::SPHERE;
-    marker.action = visualization_msgs::Marker::ADD;
+    marker_left_cone.scale.x = 0.5;
+    marker_left_cone.scale.y = 0.5;
+    marker_left_cone.scale.z = 0.5;
 
-    marker.pose.position.x = x; //move x position over time
-    marker.pose.position.y = y;
-    marker.pose.position.z = 0.0;
+    marker_left_cone.color.r = 0.0;
+    marker_left_cone.color.g = 0.0;
+    marker_left_cone.color.b = 1.0;
+    marker_left_cone.color.a = 1.0;
 
-    marker.scale.x = 0.5;
-    marker.scale.y = 0.5;
-    marker.scale.z = 0.5;
-
-    marker.color.r = 0.0;
-    marker.color.g = 1.0;
-    marker.color.b = 0.0;
-    marker.color.a = 1.0;
-
-    //publish the message
-    cone_pub.publish(marker);
-
+    cone_pub.publish(marker_left_cone);
 
 
     //------------------------------------------------------------
-    last_time = current_time;
+    //publish right cone
+    
+    visualization_msgs::Marker marker_right_cone;
+    marker_right_cone.header.frame_id = "base_link";
+    marker_right_cone.header.stamp = current_time;
+    marker_right_cone.id = ++count;
+
+    marker_right_cone.type = visualization_msgs::Marker::SPHERE;
+    marker_right_cone.action = visualization_msgs::Marker::ADD;
+
+    marker_right_cone.pose.position.x = x_right_cone; 
+    marker_right_cone.pose.position.y = y_right_cone;
+    marker_right_cone.pose.position.z = 0.0;
+
+    marker_right_cone.scale.x = 0.5;
+    marker_right_cone.scale.y = 0.5;
+    marker_right_cone.scale.z = 0.5;
+
+    marker_right_cone.color.r = 1.0;
+    marker_right_cone.color.g = 1.0;
+    marker_right_cone.color.b = 0.0;
+    marker_right_cone.color.a = 1.0;
+    
+    cone_pub.publish(marker_right_cone);
+
+
+
+    //------------------------------------------------------------
+    //last_time = current_time;
     ++count;
-    r.sleep();
+    rate.sleep();
   }
 }

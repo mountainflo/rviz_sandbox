@@ -24,5 +24,5 @@ roslaunch rviz_sandbox odom_publisher.launch
 The "odom_publisher.launch"-file does:
 
 * start rviz with urdf model
-* start odometry_publisher
-* start cone_publisher
+* start odometry_publisher (drive a circle with the car)
+* start cone_publisher (publish blue and yellow cones)
