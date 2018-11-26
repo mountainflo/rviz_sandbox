@@ -1,9 +1,6 @@
 #include <ros/ros.h>
-#include <tf/transform_broadcaster.h>
-#include <tf/transform_listener.h>
 #include <visualization_msgs/Marker.h>
-#include <sstream>
-
+#include <std_msgs/ColorRGBA.h>
 
 
 int main(int argc, char** argv){
@@ -11,7 +8,6 @@ int main(int argc, char** argv){
 
   ros::NodeHandle n;
   ros::Publisher cone_pub = n.advertise<visualization_msgs::Marker>("cone_publisher", 50);
-  tf::TransformListener listener;
 
   double x_left_cone = 3.0;
   double y_left_cone = -4.0;
