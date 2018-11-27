@@ -114,7 +114,7 @@ Visualization Manager:
       Marker Topic: /cone_publisher
       Name: Marker
       Namespaces:
-        {}
+        "": true
       Queue Size: 100
       Value: true
   Enabled: true
@@ -142,7 +142,7 @@ Visualization Manager:
   Views:
     Current:
       Class: rviz/Orbit
-      Distance: 38.191280364990234
+      Distance: 45.206722259521484
       Enable Stereo Rendering:
         Stereo Eye Separation: 0.05999999865889549
         Stereo Focal Distance: 1
@@ -157,10 +157,10 @@ Visualization Manager:
       Invert Z Axis: false
       Name: Current View
       Near Clip Distance: 0.009999999776482582
-      Pitch: 0.5803981423377991
+      Pitch: 0.3053984045982361
       Target Frame: <Fixed Frame>
       Value: Orbit (rviz)
-      Yaw: 0.660398006439209
+      Yaw: 0.7453978657722473
     Saved: ~
 Window Geometry:
   Displays:
