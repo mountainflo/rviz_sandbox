@@ -18,10 +18,10 @@ Build and start the simulation:
 ```
 cd ~/catkin_ws
 catkin_make
-roslaunch rviz_sandbox odom_publisher.launch
+roslaunch rviz_sandbox circle_track_with_cones.launch
 ```
 
-The "odom_publisher.launch"-file does:
+The "circle_track_with_cones.launch"-file does:
 
 * start rviz with urdf model
 * start odometry_publisher (drive a circle with the car)
