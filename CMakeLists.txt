@@ -202,8 +202,6 @@ include_directories(
 # catkin_add_nosetests(test)
 
 
-add_executable(rviz_publisher src/rviz_publisher.cpp)
-target_link_libraries(rviz_publisher ${catkin_LIBRARIES})
 
 add_executable(odometry_publisher src/odometry_publisher.cpp)
 target_link_libraries(odometry_publisher ${catkin_LIBRARIES})

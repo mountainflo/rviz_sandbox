@@ -9,17 +9,18 @@ int main(int argc, char** argv){
   ros::NodeHandle n;
   ros::Publisher cone_pub = n.advertise<visualization_msgs::Marker>("cone_publisher", 50);
 
+  //-----------------------------
+  // define cone positions
   double x_left_cone = 3.0;
   double y_left_cone = -4.0;
   double x_right_cone = 5.0;
   double y_right_cone = 0.0;
 
-  ros::Time current_time;
-  current_time = ros::Time::now();
+  ros::Time current_time = ros::Time::now();
 
   int max_amount_cones = 20;
 
-  ros::Rate rate(1.0);
+  ros::Rate rate(1.0); //rate in Hz
   int count = 0;
   while (n.ok()){
 
@@ -27,16 +28,16 @@ int main(int argc, char** argv){
       count = 0;
     }
 
-    ros::spinOnce(); // check for incoming messages
+    ros::spinOnce(); //check for incoming messages
 
-    current_time = ros::Time::now();
+    current_time = ros::Time::now(); //specify time for both cones
 
 
     //------------------------------------------------------------
     //publish left cone
 
     visualization_msgs::Marker marker_left_cone;
-    marker_left_cone.header.frame_id = "base_link";
+    marker_left_cone.header.frame_id = "base_link"; //publish to coordinate frame of the urdf-car-model
     marker_left_cone.header.stamp = current_time;
     marker_left_cone.id = count;
 
@@ -88,7 +89,6 @@ int main(int argc, char** argv){
 
 
     //------------------------------------------------------------
-    //last_time = current_time;
     ++count;
     rate.sleep();
   }
