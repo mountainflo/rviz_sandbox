@@ -7,8 +7,8 @@ Sandbox for rviz where publisher, urdf and tf-functions will be tested.
 
 ### Prerequisites
 
-* installed ROS
-* copy this package into your catkin_workspace
+* installed ROS (used melodic)
+* copy this package into the "src"-folder of your catkin-workspace
 
 
 ### Getting this thing running
@@ -26,3 +26,5 @@ The "circle_track_with_cones.launch"-file does:
 * start rviz with urdf model
 * start odometry_publisher (drive a circle with the car)
 * start cone_publisher (publish blue and yellow cones)
+
+![rviz with circle_track and cones](images/rviz_circle_track_with_cones.png)
