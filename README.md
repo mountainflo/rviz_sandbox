@@ -4,6 +4,9 @@
 
 Sandbox for rviz where publisher, urdf and tf-functions will be tested.
 
+You can find a detailed evaluation of RVIZ and its features in:
+[evaluation.md](evaluation.md)
+
 
 ### Prerequisites
 
