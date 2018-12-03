@@ -72,7 +72,7 @@ Visualization Manager:
           Value: true
         Value: true
       Enabled: true
-      Keep: 50
+      Keep: 1
       Name: Odometry
       Position Tolerance: 0.10000000149011612
       Shape:
@@ -84,7 +84,7 @@ Visualization Manager:
         Head Radius: 0.10000000149011612
         Shaft Length: 1
         Shaft Radius: 0.05000000074505806
-        Value: Arrow
+        Value: Axes
       Topic: /odometry_publisher
       Unreliable: false
       Value: true

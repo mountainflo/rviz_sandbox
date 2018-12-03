@@ -11,10 +11,10 @@ int main(int argc, char** argv){
 
   //-----------------------------
   // define cone positions
-  double x_left_cone = 3.0;
-  double y_left_cone = -4.0;
-  double x_right_cone = 5.0;
-  double y_right_cone = 0.0;
+  double x_blue_cone = 3.0; // blue on the right side
+  double y_blue_cone = -4.0;
+  double x_yellow_cone = 5.0; // yellow on the left side
+  double y_yellow_cone = 0.0;
 
   ros::Time current_time = ros::Time::now();
 
@@ -34,57 +34,57 @@ int main(int argc, char** argv){
 
 
     //------------------------------------------------------------
-    //publish left cone
+    //publish blue cone
 
-    visualization_msgs::Marker marker_left_cone;
-    marker_left_cone.header.frame_id = "base_link"; //publish to coordinate frame of the urdf-car-model
-    marker_left_cone.header.stamp = current_time;
-    marker_left_cone.id = count;
+    visualization_msgs::Marker marker_blue_cone;
+    marker_blue_cone.header.frame_id = "base_link"; //publish to coordinate frame of the urdf-car-model
+    marker_blue_cone.header.stamp = current_time;
+    marker_blue_cone.id = count;
 
-    marker_left_cone.type = visualization_msgs::Marker::SPHERE;
-    marker_left_cone.action = visualization_msgs::Marker::ADD;
+    marker_blue_cone.type = visualization_msgs::Marker::SPHERE;
+    marker_blue_cone.action = visualization_msgs::Marker::ADD;
 
-    marker_left_cone.pose.position.x = x_left_cone; 
-    marker_left_cone.pose.position.y = y_left_cone;
-    marker_left_cone.pose.position.z = 0.0;
+    marker_blue_cone.pose.position.x = x_blue_cone; 
+    marker_blue_cone.pose.position.y = y_blue_cone;
+    marker_blue_cone.pose.position.z = 0.0;
 
-    marker_left_cone.scale.x = 0.5;
-    marker_left_cone.scale.y = 0.5;
-    marker_left_cone.scale.z = 0.5;
+    marker_blue_cone.scale.x = 0.5;
+    marker_blue_cone.scale.y = 0.5;
+    marker_blue_cone.scale.z = 0.5;
 
-    marker_left_cone.color.r = 0.0;
-    marker_left_cone.color.g = 0.0;
-    marker_left_cone.color.b = 1.0;
-    marker_left_cone.color.a = 1.0;
+    marker_blue_cone.color.r = 0.0;
+    marker_blue_cone.color.g = 0.0;
+    marker_blue_cone.color.b = 1.0;
+    marker_blue_cone.color.a = 1.0;
 
-    cone_pub.publish(marker_left_cone);
+    cone_pub.publish(marker_blue_cone);
 
 
     //------------------------------------------------------------
-    //publish right cone
+    //publish yellow cone
     
-    visualization_msgs::Marker marker_right_cone;
-    marker_right_cone.header.frame_id = "base_link";
-    marker_right_cone.header.stamp = current_time;
-    marker_right_cone.id = ++count;
+    visualization_msgs::Marker marker_yellow_cone;
+    marker_yellow_cone.header.frame_id = "base_link";
+    marker_yellow_cone.header.stamp = current_time;
+    marker_yellow_cone.id = ++count;
 
-    marker_right_cone.type = visualization_msgs::Marker::SPHERE;
-    marker_right_cone.action = visualization_msgs::Marker::ADD;
+    marker_yellow_cone.type = visualization_msgs::Marker::SPHERE;
+    marker_yellow_cone.action = visualization_msgs::Marker::ADD;
 
-    marker_right_cone.pose.position.x = x_right_cone; 
-    marker_right_cone.pose.position.y = y_right_cone;
-    marker_right_cone.pose.position.z = 0.0;
+    marker_yellow_cone.pose.position.x = x_yellow_cone; 
+    marker_yellow_cone.pose.position.y = y_yellow_cone;
+    marker_yellow_cone.pose.position.z = 0.0;
 
-    marker_right_cone.scale.x = 0.5;
-    marker_right_cone.scale.y = 0.5;
-    marker_right_cone.scale.z = 0.5;
+    marker_yellow_cone.scale.x = 0.5;
+    marker_yellow_cone.scale.y = 0.5;
+    marker_yellow_cone.scale.z = 0.5;
 
-    marker_right_cone.color.r = 1.0;
-    marker_right_cone.color.g = 1.0;
-    marker_right_cone.color.b = 0.0;
-    marker_right_cone.color.a = 1.0;
+    marker_yellow_cone.color.r = 1.0;
+    marker_yellow_cone.color.g = 1.0;
+    marker_yellow_cone.color.b = 0.0;
+    marker_yellow_cone.color.a = 1.0;
     
-    cone_pub.publish(marker_right_cone);
+    cone_pub.publish(marker_yellow_cone);
 
 
 
