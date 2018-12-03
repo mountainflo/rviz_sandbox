@@ -2,7 +2,7 @@
 
 ### 1. Introduction
 
-RVIZ is a visualization tool that comes with ROS. In ROS you have topics (topics are named buses) to share data. You can select topics in RVIZ which you want to listen to. All future messages published over the selected topics will be displayed.  
+RVIZ is a visualization tool that comes with ROS (Robot Operating System). In ROS you have topics (topics are named buses) to share data. You can select topics in RVIZ which you want to listen to. All future messages which are published over the selected topics will be displayed.  
 
 
 ### 2. Display types
@@ -17,17 +17,19 @@ RVIZ can display different display types. The major types are:
 * depth-camera data
 * ...
 
+For detailed description of the display types see: [http://wiki.ros.org/rviz/DisplayTypes](http://wiki.ros.org/rviz/DisplayTypes)
+
 ### 3. Advantages of using RVIZ
 
 **3.1 Tf package**
 
-The *tf package* lets the user keep track of multiple coordinate frames over time and their relationship to each other. It supports easy transformation from one coordinate frame to an other. 
+The *tf package* lets the user keep track of multiple coordinate frames over time and their relationship to each other. It supports easy transformations from one coordinate frame to an other. 
 
 With tf you can go back in time. For example if you want to go to the pose the car had two seconds ago. This is possible because each pose in tf is identifiable by a timestamp and a id.
 
 **3.2 Rosbag**
 
-With *rosbag* you can record data which is published over ROS. At a later time the data can be played back. This is a useful debugging feature especially if you have not the possibility to view the data in realtime.
+With *rosbag* you can record the data which is published over ROS. Rosbag creates a compact .bag-file. At a later time the file can be played back. This is a useful debugging feature especially if you have not the possibility to view the data in realtime.
 
 **3.3 URDF**
 
@@ -38,7 +40,7 @@ With *rosbag* you can record data which is published over ROS. At a later time t
 Our autonomous system does not use ROS. All the data from the sensors is stored in a .csv-file. To create ROS-messages and -topics from csv at a later time you have two options:
 
 * parse the csv-data and publish the messages over ROS while recording a rosbag. This solution needs a lot of time to create a rosbag file with the correct time stamps.
-* rosbag has its own API. There you can find different write functions to create a message in a bag file ([write-functions in rosbag C++ API](http://docs.ros.org/api/rosbag_storage/html/c++/classrosbag_1_1Bag.html#adc59dfc07b3c9a3f0dc26fdbcdc81786)). Besides the API there is not much documentation about writing rosbag files by yourself.
+* rosbag has its own API. There you can find different write-functions to create a message in a bag file ([write-functions in rosbag C++ API](http://docs.ros.org/api/rosbag_storage/html/c++/classrosbag_1_1Bag.html#adc59dfc07b3c9a3f0dc26fdbcdc81786)). Besides the API there is not much documentation about writing rosbag files by yourself.
 
 Example .rosbag file
 
@@ -52,7 +54,7 @@ Example .rosbag file
 2020 2020 2020 2020 2020 2020 2020 2020
 2020 2020 2020 2020 2020 2020 2020 2020
 ```
-In the latest version of ROS the rosbag files are stored in the rosbag format version 2.0. A detailed description can be found herer: [http://wiki.ros.org/Bags/Format/2.0](http://wiki.ros.org/Bags/Format/2.0)
+In the latest version of ROS the rosbag files are stored in the rosbag format version 2.0. A detailed description can be found here: [http://wiki.ros.org/Bags/Format/2.0](http://wiki.ros.org/Bags/Format/2.0)
 
 ### 5. Conclusion
 
