@@ -33,9 +33,29 @@ With *rosbag* you can record data which is published over ROS. At a later time t
 
 *URDF* is a XML format representing a robot model. You're able to create your own robot which can be displayed in RVIZ.
 
+### 4. Challenge
 
-### 4. Conclusion
+Our autonomous system does not use ROS. All the data from the sensors is stored in a .csv-file. To create ROS-messages and -topics from csv at a later time you have two options:
 
-With RVIZ from ROS you get a stable and secure visualization tool developed by a large active community. With a reasonable amount of time you can create a visualization that fits your needs. But you will always need ROS to use RVIZ. Keep in mind if you haven´t used ROS on your system before, RVIZ together with ROS needs a lot of space.
+* parse the csv-data and publish the messages over ROS while recording a rosbag. This solution needs a lot of time to create a rosbag file with the correct time stamps.
+* rosbag has its own API. There you can find different write functions to create a message in a bag file ([write-functions in rosbag C++ API](http://docs.ros.org/api/rosbag_storage/html/c++/classrosbag_1_1Bag.html#adc59dfc07b3c9a3f0dc26fdbcdc81786)). Besides the API there is not much documentation about writing rosbag files by yourself.
+
+Example .rosbag file
+
+```
+2352 4f53 4241 4720 5632 2e30 0a45 0000
+0010 0000 0063 6875 6e6b 5f63 6f75 6e74
+3d01 0000 000f 0000 0063 6f6e 6e5f 636f
+756e 743d 0400 0000 1200 0000 696e 6465
+785f 706f 733d 98d6 0b00 0000 0000 0400
+0000 6f70 3d03 bb0f 0000 2020 2020 2020
+2020 2020 2020 2020 2020 2020 2020 2020
+2020 2020 2020 2020 2020 2020 2020 2020
+```
+In the latest version of ROS the rosbag files are stored in the rosbag format version 2.0. A detailed description can be found herer: [http://wiki.ros.org/Bags/Format/2.0](http://wiki.ros.org/Bags/Format/2.0)
+
+### 5. Conclusion
+
+With RVIZ from ROS you get a stable and secure visualization tool developed by a large active community. With a reasonable amount of time you can create a visualization that fits your needs. But you will always need ROS to use RVIZ. Keep in mind if you haven´t used ROS on your system before, RVIZ together with ROS needs a lot of space. The biggest challenge will be the convertion from the .csv-file to ROS-messages and providing the correct timestamps for the messages.
 
 As an alternative solution to RVIZ a visualization tool can be developed by yourself. With a self developed tool you are more flexible and independent. For C++ you can use the Qt library.
